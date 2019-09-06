@@ -9,6 +9,12 @@ class Home extends BaseController
 		return view('welcome_message');
 	}
 
+	public function coba()
+	{
+		return view("upload/upload", ['url' => base_url()]);
+	
+	}
+
 	//--------------------------------------------------------------------
 
 }

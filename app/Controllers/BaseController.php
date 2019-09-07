@@ -43,4 +43,14 @@ class BaseController extends Controller
 		// $this->session = \Config\Services::session();
 
 	}
+
+	protected function getAlert($message = null) // tipe array 'message' dan 'type'
+	{
+		if (!is_null($message)) {
+			return view('core/alert', $message);
+		} else {
+			return null;
+		}
+		
+	}
 }

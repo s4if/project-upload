@@ -34,7 +34,7 @@ class Database extends \CodeIgniter\Database\Config
 		'hostname' => 'localhost',
 		'username' => '',
 		'password' => '',
-		'database' => APPPATH.'Database/db.sqlite',
+		'database' => APPPATH . 'Database/db.sqlite',
 		'DBDriver' => 'SQLite3',
 		'DBPrefix' => '',
 		'pConnect' => false,

@@ -27,6 +27,8 @@ class BaseController extends Controller
 	 */
 	protected $helpers = [];
 
+	protected $session;
+
 	/**
 	 * Constructor.
 	 */
@@ -40,8 +42,7 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.:
 		// $this->session = \Config\Services::session();
-
-}
+	}
 
 	protected function getAlert($message = null) // tipe array 'message' dan 'type'
 	{

@@ -1,8 +1,23 @@
 <?php namespace App\Models;
 
-use CodeIgniter\Model;
-
-class Upload extends Model
+class Upload
 {
+	protected $db;
 
+	function __construct()
+	{
+		$this->db = \Config\Database::connect();
+	}
+
+	public function simpan($data)
+	{
+		$builder = $this->db->table('upload_data');
+		$builder->insert($data);
+		return ($this->db->affectedRows() > 0);
+	}
+
+	public function getTugas($id_tugas)
+	{
+		$builder = $this->db->table('upload_data');
+	}
 }

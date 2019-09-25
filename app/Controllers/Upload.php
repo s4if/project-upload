@@ -5,7 +5,7 @@ class Upload extends BaseController
 	protected $session;
 	function __construct()
 	{
-		$this->session = session();
+		$this->session = \Config\Services::session();
 		$this->session->start();
 	}
 
@@ -43,7 +43,23 @@ class Upload extends BaseController
 			try
 			{
 				$newFile = $file->move(WRITEPATH . 'uploads/' . $idPelajaran, $filename);
-				$this->session->setFlashdata('alert', ['message' => 'Upload Berhasil', 'type' => 'success']);
+				$upModel = new \App\Models\Upload();
+				$date    = new \DateTime('now');
+				$res     = $upModel->simpan([
+					'nama'       => $nama,
+					'kelas'      => $kelas,
+					'pelajaran'  => $pelajaran,
+					'tgl_upload' => $date->getTimestamp(),
+					'nama_file'  => $filename,
+				]);
+				if ($res)
+				{
+					$this->session->setFlashdata('alert', ['message' => 'Upload Berhasil', 'type' => 'success']);
+				}
+				else
+				{
+					$this->session->setFlashdata('alert', ['message' => 'Maaf, upload gagal.', 'type' => 'warning']);
+				}
 			}
 			catch (HTTPException $e)
 			{
@@ -55,11 +71,6 @@ class Upload extends BaseController
 		{
 			$this->session->setFlashdata('alert', ['message' => 'Maaf, upload gagal.', 'type' => 'danger']);
 		}
-	}
-	public function sql()
-	{
-		$db = db_connect();
-		return 'konek?';
 	}
 
 }
